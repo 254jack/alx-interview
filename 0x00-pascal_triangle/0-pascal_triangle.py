@@ -1,27 +1,27 @@
 #!/usr/bin/python3
-"""Pascal's Triangle"""
+"""Python script that computes the Pascal's triangle of a given number"""
 
 
 def pascal_triangle(n):
     """
+    method that returns a list of lists of integers
+    representing the Pascal’s triangle of n
     """
-    pascal_tri = []
+    triangle = []
 
     if n <= 0:
-        return []
+        return triangle
 
     for i in range(n):
-        if (i == 0):
-            pascal_tri.append([1])
-        else:
-            cur_row = []
-            for j in range(i + 1):
-                if (j == 0 or j == i):
-                    cur_row.append(1)
-                else:
-                    cur_row.append(pascal_tri[i - 1][j - 1] +
-                                   pascal_tri[i - 1][j])
+        row = []
 
-            pascal_tri.append(cur_row)
+        for j in range(i + 1):
+            if j == 0 or j == i:
+                row.append(1)
 
-    return (pascal_tri)
+            else:
+                row.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
+
+        triangle.append(row)
+
+    return triangle
