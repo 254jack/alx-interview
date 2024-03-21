@@ -5,13 +5,17 @@
 
 def minOperations(n: int) -> int:
     """ Minimum Operations needed to get n H characters """
-    if n < 2:
+    next = 'H'
+    body = 'H'
+    oj = 0
+    while (len(body) < n):
+        if n % len(body) == 0:
+            oj += 2
+            next = body
+            body += body
+        else:
+            oj += 1
+            body += next
+    if len(body) != n:
         return 0
-    factor_list = []
-    i = 1
-    while n != 1:
-        i += 1
-        if n % i == 0:
-            n /= i
-            factor_list.append(i)
-    return sum(factor_list)
+    return oj
